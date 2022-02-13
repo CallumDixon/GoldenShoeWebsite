@@ -25,7 +25,6 @@ const productItem = (props: IProductsItem) => {
         fetchImage(props.image)
             // @ts-ignore
             .then((img:string) => {
-                console.log(img)
                 setFile(img)
                 setLoading(false)
             })
