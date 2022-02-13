@@ -1,0 +1,35 @@
+.color-nav {
+    background-color: #8A2E23
+}
+
+.navItem:hover {
+    background-color: #9B3E23;
+}
+
+#homePageContent {
+}
+
+#productMenu {
+    padding: 40px;
+}
+
+#productList {
+    background-color: #8A2E23;
+    list-style-type: none;
+}
+
+.productListItemCard:hover {
+    background-color: #f6f2f7;;
+}
+
+#homePageFeaturedProducts {
+    background-color: #f6f2f7;
+}
+
+#homePageFeaturedProductsCard {
+    padding: 10px;
+}
+
+#homePageCard {
+    width: 200rem;
+}
