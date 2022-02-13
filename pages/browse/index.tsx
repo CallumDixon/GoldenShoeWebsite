@@ -1,26 +1,26 @@
 import type { NextPage } from 'next'
-import {fetchCategories} from "../functions/api";
+import {fetchCategories} from "../../functions/api";
 import Link from 'next/link'
-import awsExports from "../src/aws-exports";
+import awsExports from "../../src/aws-exports";
 import {Amplify} from "aws-amplify";
 import {Button, Card, Col, Container, Nav, Navbar, NavDropdown, Row} from "react-bootstrap";
 Amplify.configure({ ...awsExports, ssr: true });
 import 'bootstrap/dist/css/bootstrap.min.css';
-import GSNavigationBar from "../components/GSNavigationBar";
-import HomePageFeaturedItem from "../components/HomePageFeaturedItem";
+import GSNavigationBar from "../../components/GSNavigationBar";
+import HomePageFeaturedItem from "../../components/HomePageFeaturedItem";
 
 export async function getStaticProps (){
 
-  const res = await fetchCategories("Categories")
+    const res = await fetchCategories("Categories")
 
-  return {
-    props: {
-      categories: res
+    return {
+        props: {
+            categories: res
+        }
     }
-  }
 }
 
-const Home: NextPage = ({categories} : any) => {
+const Products: NextPage = ({categories} : any) => {
     return (
 
         <div>
@@ -43,18 +43,6 @@ const Home: NextPage = ({categories} : any) => {
                             </ul>
                         </div>
                     </Col>
-
-                    <Col>
-                        <div id={"homePageFeaturedProducts"}>
-                            <Container fluid id={"homePageFeaturedProductsCard"}>
-                                <Row sm={1} md={2} lg={2}>
-                                    <HomePageFeaturedItem/>
-                                    <HomePageFeaturedItem/>
-                                    <HomePageFeaturedItem/>
-                                </Row>
-                            </Container>
-                        </div>
-                    </Col>
                 </Row>
 
             </Container>
@@ -62,4 +50,4 @@ const Home: NextPage = ({categories} : any) => {
     );
 }
 
-export default Home
+export default Products

@@ -2,6 +2,7 @@ import {Card, Spinner} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import {fetchImage} from "../functions/api";
 import Image from 'next/image'
+import Link from "next/link";
 import awsExports from "../src/aws-exports";
 import {Amplify} from "aws-amplify";
 Amplify.configure({ ...awsExports, ssr: true });
@@ -31,25 +32,24 @@ const productItem = (props: IProductsItem) => {
     },[])
 
     return (
-        <div>
+        <Link href={props.parent + "/" + props.name}>
+            <Card id={"productItemCard"} className={"mx-auto my-2"}>
 
-        <Card id={"productItemCard"} className={"mx-auto my-2"} >
+                { loading ?
 
-            { loading ?
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
 
-                <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </Spinner>
-
-                :
-                <Card.Img variant="top" src={file} />
-            }
-            <Card.Body>
-                <Card.Title>{props.name}</Card.Title>
-            </Card.Body>
-        </Card>
-
-        </div>
+                    :
+                    <Card.Img variant="bottom" src={file} />
+                }
+                <Card.Body>
+                    <Card.Title>{props.name}</Card.Title>
+                    <Card.Text>{props.price}</Card.Text>
+                </Card.Body>
+            </Card>
+        </Link>
     )
 
 }

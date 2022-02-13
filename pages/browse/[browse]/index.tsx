@@ -1,16 +1,11 @@
 import { useState } from "react"
-import {fetchCategories, fetchProducts} from "../functions/api";
+import {fetchCategories, fetchProducts} from "../../../functions/api";
 import { Amplify} from "aws-amplify";
-import awsExports from "../src/aws-exports";
+import awsExports from "../../../src/aws-exports";
 import {Col, Container, Row, Spinner} from "react-bootstrap";
-import GSNavigationBar from "../components/GSNavigationBar";
+import GSNavigationBar from "../../../components/GSNavigationBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ProductItem, {IProductsItem} from "../components/ProductItem";
-
-interface IProductsItemView{
-    item: IProductsItem
-}
-
+import ProductItem, {IProductsItem} from "../../../components/ProductItem";
 Amplify.configure({ ...awsExports, ssr: true });
 
 // @ts-ignore
@@ -32,11 +27,11 @@ const browse = (props) => {
 
                 <Container fluid>
 
-                    <Row sm={1} md={2} lg={4}>
+                    <Row xs={2} md={3} lg={4}>
                         { props.products.map((item: IProductsItem) => (
-                                <div>
-                                    <ProductItem image={item.image} name={item.name} price={item.price} description={item.description} parent={item.parent}/>
-                                </div>
+                            <div>
+                                <ProductItem image={item.image} name={item.name} price={item.price} description={item.description} parent={item.parent}/>
+                            </div>
                         ))}
                     </Row>
                 </Container>
@@ -79,4 +74,3 @@ export async function getStaticProps(context: { params: any }) {
 }
 
 export default browse
-

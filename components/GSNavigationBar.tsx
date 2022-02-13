@@ -9,7 +9,7 @@ const GSNavigationBar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link className={"navItem"} >Products</Nav.Link>
+                        <Nav.Link className={"navItem"} href={"/browse"}>Products</Nav.Link>
                         <Nav.Link className={"navItem"} href={"/MyAccount"}>My Account</Nav.Link>
                         <Nav.Link className={"navItem"} href={"/About"}>About</Nav.Link>
                         <Nav.Link className={"navItem"} href={"/Contact"}>Contact</Nav.Link>
