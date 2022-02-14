@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import {fetchCategories} from "../functions/api";
+import {fetchCategories, fetchImage, fetchProducts} from "../functions/api";
 import Link from 'next/link'
 import awsExports from "../src/aws-exports";
 import {Amplify} from "aws-amplify";
@@ -8,19 +8,27 @@ Amplify.configure({ ...awsExports, ssr: true });
 import 'bootstrap/dist/css/bootstrap.min.css';
 import GSNavigationBar from "../components/GSNavigationBar";
 import HomePageFeaturedItem from "../components/HomePageFeaturedItem";
+import {useEffect, useState} from "react";
+import { BasketContextProvider } from "../components/BasketContext";
+
 
 export async function getStaticProps (){
 
-  const res = await fetchCategories("Categories")
+    const res = await fetchCategories("Categories")
+    const prod = (await fetchProducts()).slice(0,3)
 
-  return {
-    props: {
-      categories: res
-    }
-  }
+
+        return {
+            props: {
+                categories: res,
+                products: prod
+            }
+        }
 }
 
-const Home: NextPage = ({categories} : any) => {
+const Home: NextPage = ({categories,products} : any) => {
+
+
     return (
 
         <div>
@@ -44,13 +52,13 @@ const Home: NextPage = ({categories} : any) => {
                         </div>
                     </Col>
 
-                    <Col>
+                    <Col xs={{order: 'first'}} md={{order:'last'}}>
                         <div id={"homePageFeaturedProducts"}>
-                            <Container fluid id={"homePageFeaturedProductsCard"}>
-                                <Row sm={1} md={2} lg={2}>
-                                    <HomePageFeaturedItem/>
-                                    <HomePageFeaturedItem/>
-                                    <HomePageFeaturedItem/>
+                            <Container id={"homePageFeaturedProductsCard"}>
+                                <Row sm={1} md={3} lg={3}>
+                                    <HomePageFeaturedItem description={products[0].description} image={products[0].image} name={products[0].name} parent={products[0].parent} price={products[0].price}/>
+                                    <HomePageFeaturedItem description={products[1].description} image={products[1].image} name={products[1].name} parent={products[1].parent} price={products[1].price}/>
+                                    <HomePageFeaturedItem description={products[2].description} image={products[2].image} name={products[2].name} parent={products[2].parent} price={products[2].price}/>
                                 </Row>
                             </Container>
                         </div>

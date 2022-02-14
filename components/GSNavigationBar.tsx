@@ -13,6 +13,7 @@ const GSNavigationBar = () => {
                         <Nav.Link className={"navItem"} href={"/MyAccount"}>My Account</Nav.Link>
                         <Nav.Link className={"navItem"} href={"/About"}>About</Nav.Link>
                         <Nav.Link className={"navItem"} href={"/Contact"}>Contact</Nav.Link>
+                        <Nav.Link className={"navItem"} href={"/Basket"}>Basket</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

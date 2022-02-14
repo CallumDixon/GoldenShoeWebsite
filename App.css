@@ -26,6 +26,10 @@
     background-color: #f6f2f7;
 }
 
+#featuredCardBody {
+    font-size: small;
+}
+
 #homePageFeaturedProductsCard {
     padding: 10px;
 }

@@ -1,15 +1,40 @@
-import {Button, Card} from "react-bootstrap";
+import {Button, Card, Spinner} from "react-bootstrap";
+import {IProductsItem} from "./ProductItem";
+import {useEffect, useState} from "react";
+import {fetchImage} from "../functions/api";
 
-const HomePageFeaturedItem = () => {
+const HomePageFeaturedItem = (featuredProduct: IProductsItem) => {
+
+    const [file,setFile] = useState<string>()
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+
+        fetchImage(featuredProduct.image)
+            // @ts-ignore
+            .then((img:string) => {
+                setFile(img)
+                setLoading(false)
+            })
+    },[])
 
     return (
-        <Card id={"homePageCard"} className={"mx-auto my-2"} >
-            <Card.Img variant="top" src="holder.js/100px180" />
-            <Card.Body>
-                <Card.Title>Card Title</Card.Title>
+        <Card id={"homePageCard"} className={"my-2"} >
+
+                { loading ?
+
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+
+                    :
+                    <Card.Img variant="bottom" src={file} className={"w-50"}/>
+                }
+
+                <Card.Body id={"featuredCardBody"}>
+                <Card.Title>{featuredProduct.name}</Card.Title>
                 <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
+                    {featuredProduct.price}
                 </Card.Text>
             </Card.Body>
         </Card>

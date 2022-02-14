@@ -1,4 +1,4 @@
-import {Card, Spinner} from "react-bootstrap";
+import {Button, Card, Spinner} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import {fetchImage} from "../functions/api";
 import Image from 'next/image'

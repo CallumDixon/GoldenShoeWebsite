@@ -5,7 +5,6 @@ import {ModelSortDirection} from "../src/API";
 
 export const fetchProducts = async () => {
 
-
    let products = await API.graphql(graphqlOperation(listProducts))
     // @ts-ignore
     return products.data.listProducts.items

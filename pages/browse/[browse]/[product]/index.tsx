@@ -5,22 +5,20 @@ import awsExports from "../../../../src/aws-exports";
 import {Amplify} from "aws-amplify";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductPageItem from "../../../../components/ProductPageItem";
-import {Container, Row} from "react-bootstrap";
 
 Amplify.configure({ ...awsExports, ssr: true });
 
 const product = (props: {products: IProductsItem}) => {
 
-    console.log(props)
-
     return(
         <div>
             <GSNavigationBar/>
-            <ProductPageItem image={props.products.image}
-                             parent={props.products.parent}
-                             name={props.products.name}
-                             price={props.products.price}
-                             description={props.products.description}/>
+            <ProductPageItem
+                image={props.products.image}
+                parent={props.products.parent}
+                name={props.products.name}
+                price={props.products.price}
+                description={props.products.description}/>
         </div>
     )
 }

@@ -1,14 +1,17 @@
 import {IProductsItem} from "./ProductItem";
-import {Card, Container, Row} from "react-bootstrap";
-import {useEffect, useState} from "react";
+import {Button, Card, Col, Container, Row} from "react-bootstrap";
+import {useEffect, useState, useContext} from "react";
 import {fetchImage} from "../functions/api";
 import {Image} from "react-bootstrap";
+import { SetBasketContext } from "./BasketContext";
 
 const ProductPageItem = (props: IProductsItem) => {
 
     const [file,setFile] = useState<string>()
     const [loading, setLoading] = useState(true)
     const [expanded, setExpanded] = useState(false)
+
+    const setBasket = useContext(SetBasketContext)
 
     const expandImage = () => {
         setExpanded(!expanded)
@@ -34,7 +37,18 @@ const ProductPageItem = (props: IProductsItem) => {
                             <Card.Header>{props.name}</Card.Header>
                             <Card.Img src={file} className="w-50 h-50 d-inline-block" onClick={expandImage}/>
                             <Card.Text>{props.description}</Card.Text>
-                            <Card.Footer>{props.price}</Card.Footer>
+                            <Card.Footer>
+                                <Row>
+                                    <Col> {props.price} </Col>
+                                    <Col>
+                                        <Button variant={"primary"} onClick={() => {
+
+                                            setBasket(props.name,1,true)
+
+                                        }} >Add to Basket</Button>
+                                    </Col>
+                                </Row>
+                            </Card.Footer>
                         </Row>
                     </Card.Body>
                     { expanded && (
