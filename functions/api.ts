@@ -1,6 +1,6 @@
 import {API, graphqlOperation} from "aws-amplify";
-import { Storage } from "@aws-amplify/storage"
-import {categoryByOrder, listProducts, productByOrder} from "../src/graphql/queries";
+import {Storage} from "@aws-amplify/storage"
+import {categoryByOrder, cSQueryByOrder, listProducts} from "../src/graphql/queries";
 import {ModelSortDirection} from "../src/API";
 
 export const fetchProducts = async () => {
@@ -8,6 +8,17 @@ export const fetchProducts = async () => {
    let products = await API.graphql(graphqlOperation(listProducts))
     // @ts-ignore
     return products.data.listProducts.items
+}
+
+export const fetchCSQueries = async (parent: string) => {
+
+    const CSQueries = await API.graphql(graphqlOperation(cSQueryByOrder,{
+        sortDirection: ModelSortDirection.ASC,
+        parent: parent
+    }))
+
+    // @ts-ignore
+    return CSQueries.data.CSQueryByOrder.items
 }
 
 export const fetchCategories = async (parent: string) => {

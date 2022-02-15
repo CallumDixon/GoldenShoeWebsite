@@ -27,3 +27,18 @@ type Product @model
   image: String!
   order: Int
 }
+
+type CSQuery @model
+@key(
+  name: "byOrder"
+  fields: ["parent","order"]
+  queryField: "CSQueryByOrder"
+)
+{
+  id: ID!
+  name: String!
+  parent: String!
+  description: String
+  leaf_node: Boolean!
+  order: Int
+}

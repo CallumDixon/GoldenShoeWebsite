@@ -4,8 +4,6 @@ import { BasketContext } from "../components/BasketContext";
 import GSNavigationBar from "../components/GSNavigationBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card, Col, Container, Row, Spinner} from "react-bootstrap";
-import {comment} from "postcss";
-import ProductItem, {IProductsItem} from "../components/ProductItem";
 
 interface IBasketItem {
     name: String
@@ -31,12 +29,6 @@ const BasketScreen = () => {
                     <span className="visually-hidden">Loading...</span>
                 </Spinner>
                 :
-                /*<div>
-                    {contextBasket.map((item,idx) => {
-                        return(<li key={idx}>{item.name}</li>)
-                    }) }
-                </div>*/
-
                 <Container fluid>
                     <Col xs={2} md={3} lg={4}>
                         { contextBasket.map((item,idx)=>(
