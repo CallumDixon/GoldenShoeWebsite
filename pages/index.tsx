@@ -54,9 +54,9 @@ const Home: NextPage = ({categories,products} : any) => {
                         <div id={"homePageFeaturedProducts"}>
                             <Container id={"homePageFeaturedProductsCard"}>
                                 <Row sm={1} md={3} lg={3}>
-                                    <HomePageFeaturedItem description={products[0].description} image={products[0].image} name={products[0].name} parent={products[0].parent} price={products[0].price}/>
-                                    <HomePageFeaturedItem description={products[1].description} image={products[1].image} name={products[1].name} parent={products[1].parent} price={products[1].price}/>
-                                    <HomePageFeaturedItem description={products[2].description} image={products[2].image} name={products[2].name} parent={products[2].parent} price={products[2].price}/>
+                                    <HomePageFeaturedItem description={products[0].description} image={products[0].image} name={products[0].name} parent={products[0].parent} price={products[0].price} stock={products[0].stock}/>
+                                    <HomePageFeaturedItem description={products[1].description} image={products[1].image} name={products[1].name} parent={products[1].parent} price={products[1].price} stock={products[1].stock}/>
+                                    <HomePageFeaturedItem description={products[2].description} image={products[2].image} name={products[2].name} parent={products[2].parent} price={products[2].price} stock={products[2].stock}/>
                                 </Row>
                             </Container>
                         </div>
