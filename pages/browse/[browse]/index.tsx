@@ -30,7 +30,7 @@ const browse = (props) => {
                     <Row xs={2} md={3} lg={4}>
                         { props.products.map((item: IProductsItem) => (
                             <div>
-                                <ProductItem image={item.image} name={item.name} price={item.price} description={item.description} parent={item.parent}/>
+                                <ProductItem image={item.image} name={item.name} price={item.price} description={item.description} parent={item.parent} stock={item.stock}/>
                             </div>
                         ))}
                     </Row>

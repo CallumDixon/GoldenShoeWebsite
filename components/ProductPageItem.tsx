@@ -4,12 +4,16 @@ import {useEffect, useState, useContext} from "react";
 import {fetchImage} from "../functions/api";
 import {Image} from "react-bootstrap";
 import { SetBasketContext } from "./BasketContext";
+import {Amplify, API, graphqlOperation} from "aws-amplify";
+import * as subscriptions from "../src/graphql/subscriptions";
+import awsExports from "../src/aws-exports";
 
 const ProductPageItem = (props: IProductsItem) => {
 
     const [file,setFile] = useState<string>()
     const [loading, setLoading] = useState(true)
     const [expanded, setExpanded] = useState(false)
+    const [stock,setStock] = useState(props.stock)
 
     const setBasket = useContext(SetBasketContext)
 
@@ -26,6 +30,17 @@ const ProductPageItem = (props: IProductsItem) => {
                 setFile(img)
                 setLoading(false)
             })
+
+        const subscription = API.graphql(
+            graphqlOperation(subscriptions.onUpdateProduct)
+            // @ts-ignore
+        ).subscribe({
+            // @ts-ignore
+            next: ({ provider, value }) => setStock(value.data.onUpdateProduct.stock),
+            // @ts-ignore
+            error: error => console.warn(error)
+        });
+
     },[])
 
     return (
@@ -40,12 +55,22 @@ const ProductPageItem = (props: IProductsItem) => {
                             <Card.Footer>
                                 <Row>
                                     <Col> {props.price} </Col>
+                                    <Col>Stock: {stock} </Col>
                                     <Col>
-                                        <Button variant={"primary"} onClick={() => {
 
-                                            setBasket(props.name,1,true)
+                                        {(parseInt(stock) > 0) ?
 
-                                        }} >Add to Basket</Button>
+                                            <Button variant={"primary"} onClick={() => {
+
+                                                setBasket(props.name,1,true)
+
+                                            }} >Add to Basket</Button>
+
+                                            :
+                                            <Card.Text>
+                                                Sorry this item is out of Stock.
+                                            </Card.Text>
+                                        }
                                     </Col>
                                 </Row>
                             </Card.Footer>

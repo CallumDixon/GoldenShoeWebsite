@@ -13,6 +13,7 @@ export interface IProductsItem {
     name: string
     price: string
     description: string
+    stock: string
 }
 
 const productItem = (props: IProductsItem) => {

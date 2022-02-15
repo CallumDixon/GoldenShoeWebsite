@@ -44,6 +44,7 @@ export const getProduct = /* GraphQL */ `
       price
       description
       image
+      stock
       order
       createdAt
       updatedAt
@@ -64,6 +65,7 @@ export const listProducts = /* GraphQL */ `
         price
         description
         image
+        stock
         order
         createdAt
         updatedAt
@@ -161,6 +163,7 @@ export const productByOrder = /* GraphQL */ `
         price
         description
         image
+        stock
         order
         createdAt
         updatedAt

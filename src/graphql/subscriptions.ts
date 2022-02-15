@@ -50,6 +50,7 @@ export const onCreateProduct = /* GraphQL */ `
       price
       description
       image
+      stock
       order
       createdAt
       updatedAt
@@ -65,6 +66,7 @@ export const onUpdateProduct = /* GraphQL */ `
       price
       description
       image
+      stock
       order
       createdAt
       updatedAt
@@ -80,6 +82,7 @@ export const onDeleteProduct = /* GraphQL */ `
       price
       description
       image
+      stock
       order
       createdAt
       updatedAt

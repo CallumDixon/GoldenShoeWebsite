@@ -2,14 +2,13 @@ import type { NextPage } from 'next'
 import {fetchCategories, fetchImage, fetchProducts} from "../functions/api";
 import Link from 'next/link'
 import awsExports from "../src/aws-exports";
-import {Amplify} from "aws-amplify";
+import {Amplify, API, graphqlOperation} from "aws-amplify";
 import {Button, Card, Col, Container, Nav, Navbar, NavDropdown, Row} from "react-bootstrap";
 Amplify.configure({ ...awsExports, ssr: true });
 import 'bootstrap/dist/css/bootstrap.min.css';
 import GSNavigationBar from "../components/GSNavigationBar";
 import HomePageFeaturedItem from "../components/HomePageFeaturedItem";
-import {useEffect, useState} from "react";
-import { BasketContextProvider } from "../components/BasketContext";
+
 
 
 export async function getStaticProps (){
@@ -27,7 +26,6 @@ export async function getStaticProps (){
 }
 
 const Home: NextPage = ({categories,products} : any) => {
-
 
     return (
 

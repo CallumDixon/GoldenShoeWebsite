@@ -24,8 +24,9 @@ type Product @model
   parent: String!
   price: String!
   description: String!,
-  image: String!
-  order: Int
+  image: String!,
+  stock: Int!,
+  order: Int!
 }
 
 type CSQuery @model

@@ -1,10 +1,11 @@
-import {fetchCategories, fetchProducts} from "../../../../functions/api";
+import { fetchProducts} from "../../../../functions/api";
 import {IProductsItem} from "../../../../components/ProductItem";
 import GSNavigationBar from "../../../../components/GSNavigationBar";
 import awsExports from "../../../../src/aws-exports";
 import {Amplify} from "aws-amplify";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductPageItem from "../../../../components/ProductPageItem";
+
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -18,7 +19,9 @@ const product = (props: {products: IProductsItem}) => {
                 parent={props.products.parent}
                 name={props.products.name}
                 price={props.products.price}
-                description={props.products.description}/>
+                description={props.products.description}
+                stock={props.products.stock}
+            />
         </div>
     )
 }
