@@ -30,7 +30,7 @@ const BasketScreen = () => {
                 </Spinner>
                 :
                 <Container fluid>
-                    <Col xs={2} md={3} lg={4}>
+                    <Col md={3} lg={4}>
                         { contextBasket.map((item,idx)=>(
 
                             <Card>
