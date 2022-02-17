@@ -33,7 +33,7 @@ const productItem = (props: IProductsItem) => {
 
     return (
         <Link href={props.parent + "/" + props.name}>
-            <Card id={"productItemCard"} className={"mx-auto my-2"}>
+            <Card id={"productItemCard"} className={"mx-auto my-2 w-100 h-100"}>
 
                 { loading ?
 
@@ -42,7 +42,7 @@ const productItem = (props: IProductsItem) => {
                     </Spinner>
 
                     :
-                    <Card.Img variant="bottom" src={file} />
+                    <Card.Img variant="bottom" src={file} className={"w-50 h-50"}/>
                 }
                 <Card.Body>
                     <Card.Title>{props.name}</Card.Title>

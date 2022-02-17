@@ -2,6 +2,7 @@ import {Button, Card, Spinner} from "react-bootstrap";
 import {IProductsItem} from "./ProductItem";
 import {useEffect, useState} from "react";
 import {fetchImage} from "../functions/api";
+import Link from 'next/link'
 
 const HomePageFeaturedItem = (featuredProduct: IProductsItem) => {
 
@@ -19,25 +20,27 @@ const HomePageFeaturedItem = (featuredProduct: IProductsItem) => {
     },[])
 
     return (
-        <Card id={"homePageCard"} className={"my-2"} >
+        <Link href={"browse/"+featuredProduct.parent+"/"+featuredProduct.name}>
+            <Card id={"homePageCard"} className={"my-2"} >
 
-                { loading ?
+                    { loading ?
 
-                    <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </Spinner>
+                        <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
 
-                    :
-                    <Card.Img variant="bottom" src={file} className={"w-50"}/>
-                }
+                        :
+                        <Card.Img variant="bottom" src={file} className={"w-50"}/>
+                    }
 
-                <Card.Body id={"featuredCardBody"}>
-                <Card.Title>{featuredProduct.name}</Card.Title>
-                <Card.Text>
-                    {featuredProduct.price}
-                </Card.Text>
-            </Card.Body>
-        </Card>
+                    <Card.Body id={"featuredCardBody"}>
+                    <Card.Title>{featuredProduct.name}</Card.Title>
+                    <Card.Text>
+                        {featuredProduct.price}
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+        </Link>
     )
 }
 
