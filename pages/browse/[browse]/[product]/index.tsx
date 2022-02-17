@@ -35,7 +35,7 @@ export async function getStaticPaths() {
 
     return {
         paths,
-        fallback: false
+        fallback: true
     }
 }
 
@@ -49,8 +49,9 @@ export async function getStaticProps(context: { params: any }) {
     return {
         props : {
             products : filtered
-        }
-    };
+        },
+        revalidate: 10
+    }
 }
 
 export default product
