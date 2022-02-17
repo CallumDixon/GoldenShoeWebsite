@@ -9,8 +9,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import GSNavigationBar from "../components/GSNavigationBar";
 import HomePageFeaturedItem from "../components/HomePageFeaturedItem";
 
-
-
 export async function getStaticProps (){
 
     const res = await fetchCategories("Categories")
